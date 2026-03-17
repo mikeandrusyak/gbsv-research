@@ -1,5 +1,6 @@
 *.DS_Store
 .venv
 *.docx
+*.xlsx
 template.ipynb
 data
