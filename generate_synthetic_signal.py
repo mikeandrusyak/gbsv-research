@@ -1,5 +1,24 @@
 from __future__ import annotations
 
+"""Generate a synthetic 1D bogie-vibration signal with recurring defect events.
+
+The script writes three artifacts next to the output path:
+- `<name>.npy`: full synthetic vibration signal
+- `<name>_event_times.npy`: defect event timestamps in seconds
+- `<name>_meta.json`: generation parameters and summary statistics
+
+The generated signal combines:
+- low-frequency baseline vibration components,
+- impulse-like defect events with damped ringing,
+- additive white noise,
+- slow drift.
+
+Generation design note:
+This synthetic generator is configured using assumptions inspired by the data
+description in the Kaggle dataset:
+https://www.kaggle.com/datasets/tamaryovell/predictive-maintanace-train-bogie-vibrations
+"""
+
 import argparse
 import json
 from pathlib import Path
@@ -8,6 +27,15 @@ import numpy as np
 
 
 def wheel_period_seconds(speed_kmh: float, wheel_diameter_m: float) -> float:
+    """Return wheel rotation period in seconds.
+
+    Args:
+        speed_kmh: Train speed in km/h.
+        wheel_diameter_m: Wheel diameter in meters.
+
+    Returns:
+        Rotation period of one wheel revolution in seconds.
+    """
     speed_mps = speed_kmh / 3.6
     f_wheel_hz = speed_mps / (np.pi * wheel_diameter_m)
     return 1.0 / f_wheel_hz
@@ -21,6 +49,22 @@ def build_synthetic_signal(
     seed: int = 26,
     noise_std: float = 0.02,
 ) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Build a synthetic vibration signal and companion metadata.
+
+    Args:
+        fs_hz: Sampling frequency in Hz.
+        duration_s: Signal duration in seconds.
+        speed_kmh: Train speed in km/h used to derive wheel periodicity.
+        wheel_diameter_m: Wheel diameter in meters.
+        seed: Random seed for reproducibility.
+        noise_std: Standard deviation of additive Gaussian noise.
+
+    Returns:
+        A tuple with:
+        - signal: 1D float64 array of vibration samples
+        - event_times: 1D array of injected defect-event timestamps in seconds
+        - meta: dict with generation parameters and descriptive statistics
+    """
     rng = np.random.default_rng(seed)
 
     n_samples = fs_hz * duration_s
@@ -55,6 +99,8 @@ def build_synthetic_signal(
     signal = (x_base + x_defect + noise + drift).astype(np.float64)
 
     meta = {
+        "source_description": "Synthetic generator configured from Kaggle dataset description",
+        "source_url": "https://www.kaggle.com/datasets/tamaryovell/predictive-maintanace-train-bogie-vibrations",
         "fs_hz": fs_hz,
         "duration_s": duration_s,
         "samples": int(n_samples),
@@ -74,6 +120,7 @@ def build_synthetic_signal(
 
 
 def parse_args() -> argparse.Namespace:
+    """Parse CLI arguments for output path and stochastic settings."""
     root = Path(__file__).resolve().parents[1]
     default_out = root / "data" / "synthetic_defect_signal.npy"
 
@@ -85,6 +132,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
+    """Generate signal files and print a concise generation summary."""
     args = parse_args()
     signal, event_times, meta = build_synthetic_signal(seed=args.seed, noise_std=args.noise_std)
 
