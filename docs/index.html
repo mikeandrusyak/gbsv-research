@@ -141,6 +141,22 @@
         </div>
     </section>
 
+    <!-- Report Viewer -->
+    <section id="report-viewer" class="viewer" hidden>
+        <div class="container">
+            <div class="viewer-header">
+                <h2 id="viewer-title">Report</h2>
+                <div class="viewer-actions">
+                    <a id="viewer-open" href="#" target="_blank" rel="noopener" class="viewer-button">Open full page ↗</a>
+                    <button id="viewer-close" type="button" class="viewer-button viewer-button-secondary">Close ✕</button>
+                </div>
+            </div>
+            <div class="viewer-frame-wrapper">
+                <iframe id="viewer-frame" title="Notebook report" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
     <!-- Method Section -->
     <section class="results">
         <div class="container">
@@ -192,5 +208,34 @@
             <a href="https://github.com/mikeandrusyak/gbsv-research">Source on GitHub</a></p>
         </div>
     </footer>
+
+    <script>
+        (function () {
+            var viewer = document.getElementById('report-viewer');
+            var frame = document.getElementById('viewer-frame');
+            var title = document.getElementById('viewer-title');
+            var openLink = document.getElementById('viewer-open');
+            var closeBtn = document.getElementById('viewer-close');
+
+            document.querySelectorAll('a.feature-card').forEach(function (card) {
+                card.addEventListener('click', function (e) {
+                    // Let middle-click / cmd-click open the report in a new tab
+                    if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                    e.preventDefault();
+                    var href = card.getAttribute('href');
+                    title.textContent = card.querySelector('h3').textContent;
+                    openLink.href = href;
+                    frame.src = href;
+                    viewer.hidden = false;
+                    viewer.scrollIntoView({ behavior: 'smooth' });
+                });
+            });
+
+            closeBtn.addEventListener('click', function () {
+                viewer.hidden = true;
+                frame.src = 'about:blank';
+            });
+        })();
+    </script>
 </body>
 </html>
