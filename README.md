@@ -1,19 +1,31 @@
-# GBSV Research - MC1 Signal Processing
+# GBSV Research — Signal & Image Processing
 
-This repository contains the MC1 coursework for synthetic train bogie vibration analysis:
-- Sampling Theorem
-- Correlation
-- Convolution and Deconvolution
+Coursework for the FHNW module "Grundlagen der Bild- und Signalverarbeitung" (fundamentals of image and signal processing), organized as two mini-challenges with six fully documented experiments.
 
-The project uses a synthetic 1D vibration signal and evaluates signal-processing methods on a fixed 1.0 s analysis window.
+**Rendered reports:** https://mikeandrusyak.github.io/gbsv-research/
 
+## Mini-Challenge 1 — Signal Processing (`mc1/`)
+
+Analysis of a synthetic 1D train-bogie vibration signal on a fixed 1.0 s window:
+
+1. `mc1/sampling_theorem.ipynb` — sampling theorem, aliasing, and reconstruction
+2. `mc1/correlation.ipynb` — defect localization via cross-correlation
+3. `mc1/convolution.ipynb` — convolution and deconvolution of sensor smearing
+
+## Mini-Challenge 2 — Image Processing (`mc2/`)
+
+Classical image-processing methods applied to my own photographs of Swiss subjects:
+
+1. `mc2/augmentation.ipynb` — augmentation pipeline on a Geneva road-signs photo
+2. `mc2/pattern_detection.ipynb` — template matching and denomination classification on Swiss coins
+3. `mc2/segmentation.ipynb` — segmentation of Emmental cheese eyes with lighting correction
 
 ## Data Provenance Note
 
 The synthetic signal generator is configured from assumptions inspired by the data description from:
 https://www.kaggle.com/datasets/tamaryovell/predictive-maintanace-train-bogie-vibrations
 
-The generated metadata file (`data/synthetic_defect_signal_meta.json`) includes a source description and source URL for traceability.
+The generated metadata file (`data/synthetic_defect_signal_meta.json`) includes a source description and source URL for traceability. All photographs in `data/` used for MC2 are my own.
 
 ## Environment Setup
 
@@ -30,7 +42,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## Generate Synthetic Data
+## Generate Synthetic Data (MC1)
 
 To regenerate the synthetic signal and companion files:
 
@@ -51,13 +63,9 @@ This command writes:
 
 ## Run Notebooks
 
-Open notebooks in `mc1/` and run cells top-to-bottom:
+Open notebooks in `mc1/` and `mc2/` and run cells top-to-bottom.
 
-1. `mc1/sampling_theorem.ipynb`
-2. `mc1/correlation.ipynb`
-3. `mc1/convolution.ipynb`
-
-All notebooks assume:
+MC1 notebooks assume:
 - sampling rate: 575 Hz
 - full duration: 60 s
 - analysis window: first 1.0 s
@@ -66,3 +74,7 @@ All notebooks assume:
 
 - Default random seed is set to `26` in the generator.
 - To reproduce previous results exactly, keep seed and parameters unchanged and rerun notebook cells from the beginning.
+
+## Rendered HTML Reports (`docs/`)
+
+The `docs/` folder contains the GitHub Pages site: a landing page (`docs/index.html`) and HTML exports of all six notebooks (`docs/mc1/`, `docs/mc2/`).
