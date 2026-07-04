@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GBSV — Signal &amp; Image Processing Research</title>
+    <meta name="description" content="FHNW coursework on the fundamentals of signal and image processing: sampling, correlation, convolution, augmentation, pattern detection, and segmentation.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">GBSV — Signal &amp; Image Processing Research</h1>
+            <p class="hero-subtitle">
+                Two mini-challenges on the fundamentals of signal and image processing:
+                analyzing a synthetic train-bogie vibration signal, and applying classical
+                image-processing methods to my own photos of Swiss subjects.
+            </p>
+            <div class="badges">
+                <span class="badge">Python</span>
+                <span class="badge">NumPy</span>
+                <span class="badge">SciPy</span>
+                <span class="badge">scikit-image</span>
+                <span class="badge">Signal Processing</span>
+                <span class="badge">Image Processing</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Overview Section -->
+    <section class="overview">
+        <div class="container">
+            <h2>Overview</h2>
+            <div class="overview-content">
+                <div class="context">
+                    <div class="info-block">
+                        <h3>Project Overview</h3>
+                        <p>University coursework at FHNW (Switzerland) for the module
+                        "Grundlagen der Bild- und Signalverarbeitung" (fundamentals of image and
+                        signal processing). Each of the six tasks is a self-contained experiment
+                        documented day by day: data &amp; domain, methodological design,
+                        implementation, evaluation, and critical reflection.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>Mini-Challenge 1 — Signals</h3>
+                        <p>A synthetic 1D vibration signal simulating a defective train-bogie
+                        bearing (inspired by a Kaggle predictive-maintenance dataset) is generated
+                        with a reproducible script, then analyzed on a fixed 1.0&nbsp;s window at
+                        575&nbsp;Hz.</p>
+                    </div>
+
+                    <div class="info-block">
+                        <h3>Mini-Challenge 2 — Images</h3>
+                        <p>Classical image processing applied to real photographs: road signs in
+                        Geneva, Swiss coins, and the eyes of Emmental cheese — augmentation,
+                        template-based pattern detection, and segmentation.</p>
+                    </div>
+                </div>
+
+                <div class="contributions">
+                    <h3>What I Did</h3>
+                    <ul>
+                        <li>Built a reproducible synthetic-signal generator with metadata and event timestamps for traceability</li>
+                        <li>Demonstrated the sampling theorem, aliasing, and reconstruction on the vibration signal</li>
+                        <li>Located defect events with cross-correlation against a known impulse pattern</li>
+                        <li>Modeled sensor smearing with convolution and recovered events via deconvolution</li>
+                        <li>Designed an augmentation pipeline and verified each transform on the Geneva road-signs photo</li>
+                        <li>Detected and classified Swiss coin denominations with template matching</li>
+                        <li>Segmented Emmental cheese eyes, including lighting correction for illuminated rims</li>
+                        <li>Evaluated every method quantitatively and reflected on its limitations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MC1 Notebooks -->
+    <section class="features">
+        <div class="container">
+            <h2>Mini-Challenge 1 — Signal Processing</h2>
+            <p class="section-description">
+                Synthetic train-bogie vibration signal · 575&nbsp;Hz · 1.0&nbsp;s analysis window.
+                Click a card to open the full rendered notebook.
+            </p>
+            <div class="features-grid">
+                <a class="feature-card" href="mc1/sampling_theorem.html">
+                    <div class="feature-icon">📈</div>
+                    <h3>Sampling Theorem</h3>
+                    <p>Nyquist rate, aliasing effects, and signal reconstruction at different sampling frequencies.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+
+                <a class="feature-card" href="mc1/correlation.html">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Correlation</h3>
+                    <p>Cross-correlation with a defect impulse template to localize bearing-defect events in noise.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+
+                <a class="feature-card" href="mc1/convolution.html">
+                    <div class="feature-icon">🌀</div>
+                    <h3>Convolution &amp; Deconvolution</h3>
+                    <p>Modeling sensor smearing as convolution and recovering the original events by deconvolution.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- MC2 Notebooks -->
+    <section class="features features-alt">
+        <div class="container">
+            <h2>Mini-Challenge 2 — Image Processing</h2>
+            <p class="section-description">
+                Classical image-processing methods applied to my own photographs of Swiss subjects.
+            </p>
+            <div class="features-grid">
+                <a class="feature-card" href="mc2/augmentation.html">
+                    <div class="feature-icon">🪧</div>
+                    <h3>Augmentation</h3>
+                    <p>Geometric and photometric augmentation pipeline, verified step by step on a Geneva road-signs photo.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+
+                <a class="feature-card" href="mc2/pattern_detection.html">
+                    <div class="feature-icon">🪙</div>
+                    <h3>Pattern Detection</h3>
+                    <p>Template matching on Swiss coins with denomination classification of the detected coins.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+
+                <a class="feature-card" href="mc2/segmentation.html">
+                    <div class="feature-icon">🧀</div>
+                    <h3>Segmentation</h3>
+                    <p>Segmenting the eyes of Emmental cheese, with lighting correction to recover illuminated rims.</p>
+                    <span class="card-link">Open notebook →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section class="results">
+        <div class="container">
+            <h2>How Each Experiment Is Structured</h2>
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-number">1</div>
+                    <div class="metric-label">Data &amp; Domain</div>
+                    <div class="metric-description">Use case, problem statement, objective, and data provenance</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number">2</div>
+                    <div class="metric-label">Methodological Design</div>
+                    <div class="metric-description">Theory, mathematical specification, parameters, and risks</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number">3</div>
+                    <div class="metric-label">Implementation</div>
+                    <div class="metric-description">Reproducible NumPy/SciPy/scikit-image code with verification</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number">4</div>
+                    <div class="metric-label">Evaluation</div>
+                    <div class="metric-description">Quantitative comparison against defined evaluation criteria</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number">5</div>
+                    <div class="metric-label">Analysis</div>
+                    <div class="metric-description">Observations, interpretation, and critical reflection</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-number">6×</div>
+                    <div class="metric-label">Experiments</div>
+                    <div class="metric-description">Six fully documented notebooks across signals and images</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Mykhailo Andrusiak — FHNW GBSV Coursework ·
+            <a href="https://github.com/mikeandrusyak/gbsv-research">Source on GitHub</a></p>
+        </div>
+    </footer>
+</body>
+</html>
